@@ -1,8 +1,8 @@
 function Index() {
   this.dataIndex;
-  this.createIndex = function(filepath) {
-    return $.getJSON(filepath);
-  },
+  this.createIndex = function (filepath) {
+  return $.getJSON(filepath);
+  }
   this.getIndex = function(bookArray) {
     var that = this;
     // List of common words to be excluded from the index.
