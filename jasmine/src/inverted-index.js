@@ -1,8 +1,10 @@
 function Index() {
+  this.dataIndex;
   this.createIndex = function(filepath) {
     return $.getJSON(filepath);
-  }
+  },
   this.getIndex = function(bookArray) {
+    var that = this;
     // List of common words to be excluded from the index.
     var stopList = ["a", "an", "and", "as", "at", "but", "by", "each", "every", "for", 
     "from", "her", "his", "in", "into", "its", "like", "my", "no", "nor",
@@ -59,10 +61,28 @@ function Index() {
         });
       });
     });
-    console.log(wordIndex);
-    return wordIndex;
+    that.dataIndex = wordIndex;
   }
-  this.SearchIndex = function(terms) {
-    
+  this.searchIndex = function(terms) {
+    var that = this;
+    var searchRes = [];
+    if (Array.isArray(terms)) {
+      terms.forEach(function(term) {
+        if (term in that.dataIndex === true) {
+          searchRes.push(that.dataIndex[term]);
+        } else {
+          searchRes.push(-1);
+        }
+      })
+    } else {
+      for(var i = 0; i < arguments.length; i++) {
+        if (arguments[i] in that.dataIndex === true) {
+          searchRes.push(that.dataIndex[arguments[i]]);
+        } else {
+          searchRes.push(-1);
+        }
+      }
+    }
+    return searchRes;
   }
 }
