@@ -64,17 +64,23 @@ describe('Inverted Index tests', function() {
     it('can search more than one term', function() {
       // All words that don't exist should result in -1.
       expect(invertedIndex.searchIndex('jeremy', 'superhero')).not.toContain(0);
+      expect(invertedIndex.searchIndex('jeremy', 'superhero')).toEqual([-1, -1]);
       expect(invertedIndex.searchIndex('jeremy', 'superhero', 'javascript')).not.toContain(1);
+      expect(invertedIndex.searchIndex('jeremy', 'superhero', 'javascript')).toEqual([-1, -1, -1]);
 
       // Result should be 1 or 0 for words that exist.
       expect(invertedIndex.searchIndex('imagination', 'rings')).toContain(0);
+      expect(invertedIndex.searchIndex('imagination', 'rings')).toEqual([0, 1]);
       expect(invertedIndex.searchIndex('alliance', 'wizard', 'dwarf')).toContain(1);
+      expect(invertedIndex.searchIndex('alliance', 'wizard', 'dwarf')).toEqual([1, 1, 1]);
     });
 
     it('can handle an array of search terms', function() {
       // Give it an array of strings as an argument.
       expect(invertedIndex.searchIndex(['rabbit', 'world'])).toContain(0);
+      expect(invertedIndex.searchIndex(['rabbit', 'world'])).toEqual([0, 0]);
       expect(invertedIndex.searchIndex(['fellowship', 'destroy', 'powerful'])).toContain(1);
+      expect(invertedIndex.searchIndex(['fellowship', 'destroy', 'powerful'])).toEqual([1, 1, 1]);
     });
   });
 });
