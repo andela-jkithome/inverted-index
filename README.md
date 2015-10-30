@@ -1,7 +1,7 @@
 # inverted-index
 Running the checkpoint.
 
-For security reasons Javascript cannot local files in chrome. Therefore, we need to make 
+For security reasons Javascript cannot load local files in chrome. Therefore, we need to make 
 the file containing the checkpoint a webserver. To do this I used local web server a node 
 js package that can be found at https://www.npmjs.com/package/local-web-server. Once 
 run ws at the folder you want to serve.
