@@ -3,7 +3,7 @@ function Index() {
   "use strict";
 
   this.createIndex = function(filepath) {
-    return $.getJSON(filepath)
+    return $.getJSON(filepath);
   };
 
   this.getIndex = function(bookArray) {
